@@ -25,7 +25,6 @@ class VendingMachine {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     private void log(String message) {
@@ -53,7 +52,7 @@ class VendingMachine {
     public void changePrice(String name, double newprice) {
         Product p = products.get(name);
         if (p != null) {
-            log(user+" price of "+name+" changed from "+p.getPrice()+" to "+newprice);
+            log(user+" changed the price of "+name+" from "+p.getPrice()+" to "+newprice);
             p.setPrice(newprice);
         } else {
             System.out.println("ERROR: attempting to change the price of the non-existing product "+name);
@@ -63,8 +62,24 @@ class VendingMachine {
 
     public void changeName(String oldname, String newname) {
         Product value = products.remove(oldname);
-        products.put(newname, value);
-        log(user + "change the name of "+oldname+" to "+newname);
+        if (value != null) {
+            products.put(newname, value);
+            log(user + " change the name of "+oldname+" to "+newname);
+        } else {
+            System.out.println("ERROR: attempting to change the name of the non-existing product "+oldname);
+            log(user+" attemtped to change the name of the inexistent product "+oldname+" to "+newname);
+        }
+    }
+
+    public void changeDescription(String name, String newcomment) {
+        Product p = products.get(name);
+        if (p != null) {
+            log(user + " changed the comment of "+name+" from "+p.getDescription()+" to "+newcomment);
+            p.setDescription(newcomment);
+        } else {
+            System.out.println("ERROR: attemting to change the comment of the non-existing product "+name);
+            log(user + " attempted to change the comment of the inexistent product "+name+" to "+newcomment);
+        }
     }
 
     public Product buy(String name) {
@@ -74,8 +89,7 @@ class VendingMachine {
         return p;
     }
 
-    public VendingMachine(String user) {
-        this.user = user;
+    private void initFromCSV() {
         try {
             BufferedReader br = new BufferedReader(new FileReader("state.csv"));
             String line;
@@ -89,12 +103,24 @@ class VendingMachine {
         }
     }
 
+    public VendingMachine(String user) {
+        this.user = user;
+        initFromCSV();
+    }
+
     public static void main(String[] args) {
         // usage: args[0] = username
         VendingMachine vm = new VendingMachine(args[0]);
         for (int i=0; i < 10; ++i) 
             vm.addProduct("name_"+i,i,"comment "+i);
-        
+        for (int i=5; i < 12; ++i) 
+            vm.changePrice("name_"+i,3.*i);
+        for (int i=7; i < 12; ++i) 
+            vm.changeDescription("name_"+i,"new description name_"+i);
+        for (int i=7; i < 12; ++i) 
+            vm.changeName("name_"+i,"new_name_"+i);
+        for (int i=7; i < 12; ++i) 
+            vm.changePrice("name_"+i,i/2.);
         vm.close();
     }
 }

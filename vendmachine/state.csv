@@ -1,10 +1,20 @@
-name6, 6.0,       comment 6
-name5, 5.0,       comment 5
-name4, 4.0,       comment 4
-name3, 3.0,       comment 3
-name9, 9.0,       comment 9
-name8, 8.0,       comment 8
-name7, 7.0,       comment 7
-name2, 2.0,       comment 2
-name1, 1.0,       comment 1
-name0, 0.0,       comment 0
+name_3, 3.0,     comment 3
+name_2, 2.0,     comment 2
+name_1, 1.0,     comment 1
+name_0, 0.0,     comment 0
+name_8, 24.0, new description name_8
+name_7, 21.0, new description name_7
+name_9, 27.0, new description name_9
+name6, 6.0,            comment 6
+name5, 5.0,            comment 5
+name4, 4.0,            comment 4
+name3, 3.0,            comment 3
+name9, 9.0,            comment 9
+name8, 8.0,            comment 8
+name7, 7.0,            comment 7
+name2, 2.0,            comment 2
+name1, 1.0,            comment 1
+name_6, 18.0,     comment 6
+name0, 0.0,            comment 0
+name_5, 15.0,     comment 5
+name_4, 4.0,     comment 4
