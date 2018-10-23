@@ -110,6 +110,10 @@ class VendingMachine {
 
     public static void main(String[] args) {
         // usage: args[0] = username
+        if (args.length == 0 || args.length > 1) {
+            System.out.println("usgage: VendingMachine <user name>");
+            System.exit(0);
+        }
         VendingMachine vm = new VendingMachine(args[0]);
         for (int i=0; i < 10; ++i) 
             vm.addProduct("name_"+i,i,"comment "+i);
